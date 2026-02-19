@@ -38,6 +38,16 @@ const scraper = {
       console.warn('No se encontró el span de Valencia');
     }
 
+
+    // Cuarto clic: seleccionar Gandia (botón Siguiente)
+    try {
+      await page.waitForSelector('.appo-station__item input[value="Gandia"] ~ label .appo-btn-station', { timeout: 5000 });
+      await page.click('.appo-station__item input[value="Gandia"] ~ label .appo-btn-station');
+      console.log('Botón Gandia pulsado');
+    } catch (e) {
+      console.warn('No se encontró el botón de Gandia');
+    }
+
     // TODO: aquí irán los siguientes clics y lógica de scraping
 
     // Simulación:
