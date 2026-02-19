@@ -28,6 +28,16 @@ const scraper = {
       console.warn('No se encontró el botón PEDIR CITA PREVIA');
     }
 
+
+    // Tercer clic: seleccionar Valencia (span)
+    try {
+      await page.waitForSelector('.appo-zone__item.Valencia .text-group', { timeout: 5000 });
+      await page.click('.appo-zone__item.Valencia .text-group');
+      console.log('Span Valencia pulsado');
+    } catch (e) {
+      console.warn('No se encontró el span de Valencia');
+    }
+
     // TODO: aquí irán los siguientes clics y lógica de scraping
 
     // Simulación:
