@@ -1,5 +1,21 @@
 ## Automatización de búsqueda de citas con Puppeteer
 
+### Arquitectura
+El proyecto está basado en **arquitectura hexagonal** (Ports & Adapters) y principios **SOLID** para máxima escalabilidad y mantenibilidad.
+
+**Estructura de carpetas:**
+```
+src/
+  application/         # Casos de uso (lógica de negocio)
+  domain/              # Entidades y lógica pura
+  infrastructure/      # Adaptadores externos (scraper, notificador, config)
+	 scraper/
+	 notifier/
+	 config/
+  interfaces/          # Adaptadores de entrada (CLI, HTTP, etc.)
+  index.js             # Punto de entrada principal
+```
+
 ### Requisitos
 - Node.js >= 16
 - npm
@@ -20,26 +36,27 @@
 1. Asegúrate de que `HEADLESS=false` en tu `.env`.
 2. Ejecuta:
 	```
-	node src/calendar-checker.js
+	node src/index.js
 	```
-3. Ajusta los selectores y lógica en el script según la web objetivo.
+3. Ajusta los selectores y lógica en `src/infrastructure/scraper/puppeteer-scraper.js` según la web objetivo.
 
 ### Uso en modo headless (producción)
 1. Cambia `HEADLESS=true` en tu `.env`.
 2. Ejecuta manualmente o configura un cron en tu servidor:
 	```
-	node src/calendar-checker.js
+	node src/index.js
 	```
 
 ### Configuración de cron (ejemplo)
 ```
-*/5 * * * * cd /ruta/al/proyecto && /usr/bin/node src/calendar-checker.js >> logs/cron.log 2>&1
+*/5 * * * * cd /ruta/al/proyecto && /usr/bin/node src/index.js >> logs/cron.log 2>&1
 ```
 
 ### Notas
-- El script enviará un email si detecta citas disponibles.
+- El sistema enviará un email si detecta citas disponibles.
 - Asegúrate de usar una contraseña de aplicación de Gmail para mayor seguridad.
 - Si usas Raspberry Pi, instala las dependencias de Chromium necesarias para Puppeteer.
+- Puedes extender el sistema agregando nuevos adaptadores (por ejemplo, notificación por Telegram, otro scraper, etc.)
 
 ---
 Para dudas o mejoras, abre un issue o contacta al autor.
