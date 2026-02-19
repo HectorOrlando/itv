@@ -18,6 +18,16 @@ const scraper = {
       console.warn('No se encontró el banner de cookies o ya fue aceptado');
     }
 
+
+    // Segundo clic: botón PEDIR CITA PREVIA
+    try {
+      await page.waitForSelector('.b-citaprevia button', { timeout: 5000 });
+      await page.click('.b-citaprevia button');
+      console.log('Botón PEDIR CITA PREVIA pulsado');
+    } catch (e) {
+      console.warn('No se encontró el botón PEDIR CITA PREVIA');
+    }
+
     // TODO: aquí irán los siguientes clics y lógica de scraping
 
     // Simulación:
