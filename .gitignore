@@ -2,8 +2,8 @@
 node_modules/
 
 # Entornos y variables
-.env
-.env.*
+# .env
+# .env.*
 
 # Logs
 logs/

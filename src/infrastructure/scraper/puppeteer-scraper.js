@@ -5,8 +5,12 @@ const config = require('../config/env-config');
 
 const scraper = {
   async getAppointments() {
-    const browser = await puppeteer.launch({ headless: config.HEADLESS });
+    const browser = await puppeteer.launch({
+      headless: config.HEADLESS,
+      args: ['--start-maximized']
+    });
     const page = await browser.newPage();
+    await page.setViewport({ width: 1920, height: 1080 });
     await page.goto(config.TARGET_URL, { waitUntil: 'networkidle2' });
 
     // Primer clic: aceptar cookies
