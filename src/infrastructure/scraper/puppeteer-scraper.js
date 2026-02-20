@@ -56,6 +56,16 @@ const scraper = {
 
     // TODO: aquí irán los siguientes clics y lógica de scraping
 
+    // Quinto clic: seleccionar Turismo
+    try {
+      await page.waitForSelector('#cat-81 .text-service', { timeout: 5000 });
+      await page.click('#cat-81 .text-service');
+      console.log('Span Turismo pulsado');
+      await page.waitForTimeout(2000);
+    } catch (e) {
+      console.warn('No se encontró el span de Turismo');
+    }
+
     // Simulación:
     const citas = [new Appointment('2026-02-19', false)];
     if (!config.HEADLESS) await new Promise(r => setTimeout(r, 3000));
