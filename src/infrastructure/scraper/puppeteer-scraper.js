@@ -38,6 +38,7 @@ const scraper = {
       await page.waitForSelector('.appo-zone__item.Valencia .text-group', { timeout: 5000 });
       await page.click('.appo-zone__item.Valencia .text-group');
       console.log('Span Valencia pulsado');
+      await new Promise(r => setTimeout(r, 3000));
     } catch (e) {
       console.warn('No se encontró el span de Valencia');
     }
@@ -45,18 +46,19 @@ const scraper = {
 
     // Cuarto clic: seleccionar Gandia (botón Siguiente)
     try {
-      await page.waitForSelector('.appo-station__item input[value="Gandia"] ~ label .appo-btn-station', { timeout: 5000 });
-      await page.click('.appo-station__item input[value="Gandia"] ~ label .appo-btn-station');
-      console.log('Botón Gandia pulsado');
+      await page.waitForSelector('label[for="store-17-0"] .appo-btn-station svg', { timeout: 5000 });
+      await page.click('label[for="store-17-0"] .appo-btn-station svg');
+      console.log('SVG Siguiente Gandia pulsado');
+      await new Promise(r => setTimeout(r, 3000));
     } catch (e) {
-      console.warn('No se encontró el botón de Gandia');
+      console.warn('No se encontró el SVG del botón de Gandia');
     }
 
     // TODO: aquí irán los siguientes clics y lógica de scraping
 
     // Simulación:
     const citas = [new Appointment('2026-02-19', false)];
-    if (!config.HEADLESS) await new Promise(r => setTimeout(r, 10000));
+    if (!config.HEADLESS) await new Promise(r => setTimeout(r, 3000));
     await browser.close();
     return citas;
   }
