@@ -1,5 +1,9 @@
 ## Automatización de búsqueda de citas con Puppeteer
 
+
+### Código principal de scraping
+El código de scraping se encuentra en: `src/infrastructure/scraper/puppeteer-scraper.js`
+
 ### Arquitectura
 El proyecto está basado en **arquitectura hexagonal** (Ports & Adapters) y principios **SOLID** para máxima escalabilidad y mantenibilidad.
 
