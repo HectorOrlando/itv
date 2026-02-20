@@ -54,16 +54,24 @@ const scraper = {
       console.warn('No se encontró el SVG del botón de Gandia');
     }
 
-    // TODO: aquí irán los siguientes clics y lógica de scraping
-
     // Quinto clic: seleccionar Turismo
     try {
       await page.waitForSelector('#cat-81 .text-service', { timeout: 5000 });
       await page.click('#cat-81 .text-service');
       console.log('Span Turismo pulsado');
-      await page.waitForTimeout(2000);
+     await new Promise(r => setTimeout(r, 3000));
     } catch (e) {
       console.warn('No se encontró el span de Turismo');
+    }
+
+    // Sexto clic: seleccionar Turismo gasolina / híbrido gasolina en el modal
+    try {
+      await page.waitForSelector('#ser-260', { timeout: 5000 });
+      await page.click('#ser-260');
+      console.log('Opción Turismo gasolina/híbrido gasolina pulsada');
+      await new Promise(r => setTimeout(r, 6000));
+    } catch (e) {
+      console.warn('No se encontró la opción Turismo gasolina/híbrido gasolina');
     }
 
     // Simulación:
