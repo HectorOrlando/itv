@@ -44,6 +44,27 @@ src/
 	```
 3. Ajusta los selectores y lógica en `src/infrastructure/scraper/puppeteer-scraper.js` según la web objetivo.
 
+### Selección de estación (GANDIA o UTIEL)
+Puedes elegir la estación sobre la que buscar cita configurando la variable `STATION` en tu archivo `.env`:
+
+```
+STATION=GANDIA
+```
+o
+```
+STATION=UTIEL
+```
+
+El scraper ejecutará automáticamente los pasos correspondientes a la estación seleccionada. No es necesario modificar el código fuente.
+
+> **Recuerda:** Antes de ejecutar el scraper, revisa y ajusta la variable:
+> 
+> ```
+> # Selección de estación (GANDIA o UTIEL)
+> STATION=GANDIA
+> ```
+> Cambia `GANDIA` por `UTIEL` si quieres buscar en la otra estación.
+
 ### Uso en modo headless (producción)
 1. Cambia `HEADLESS=true` en tu `.env`.
 2. Ejecuta manualmente o configura un cron en tu servidor:
